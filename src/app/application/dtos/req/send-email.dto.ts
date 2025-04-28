@@ -4,10 +4,6 @@ import { IsString } from 'class-validator';
 export class SendEmailReq {
   @ApiProperty()
   @IsString()
-  id: string;
-
-  @ApiProperty()
-  @IsString()
   to: string;
 
   @ApiProperty()

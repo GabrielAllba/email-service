@@ -9,13 +9,12 @@ export class EmailController {
 
   @EventPattern('user.created')
   async handleNotificationEvent(@Payload() payload: UserCreatedEvent) {
-    const { id, email, username } = payload;
+    const { email, emailVerificationToken } = payload;
 
-    const verificationUrl = `https://yourapp.com/verify?id=${id}?email=${email}?username=${username}`;
+    const verificationUrl = `https://yourapp.com/verify?emailVerificationToken=${emailVerificationToken}`;
     const html = `<p>Thank you for registering!</p>
                   <p>Please verify your email by clicking <a href="${verificationUrl}">here</a>.</p>`;
     await this.sendEmailUseCase.execute({
-      id: id,
       to: email,
       subject: 'Verify your Email',
       html: html,

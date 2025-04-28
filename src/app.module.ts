@@ -1,12 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { MessagingModule } from './app/infra/messaging/messaging.module';
-import { typeOrmConfig } from './config/typeorm.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
     ClientsModule.register([
       {
         name: 'KAFKA_SERVICE',
