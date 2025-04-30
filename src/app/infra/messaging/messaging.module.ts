@@ -1,10 +1,7 @@
 import { Module } from '@nestjs/common';
-import { SendEmailUseCase } from 'src/app/application/use-cases/send-email.use-case';
-import { EmailController } from './kafka/controllers/email.controller';
-import { KafkaConsumerService } from './kafka/kafka-consumer.service';
+import { KafkaModule } from './kafka/kafka.module';
 
 @Module({
-  providers: [KafkaConsumerService, SendEmailUseCase],
-  controllers: [EmailController],
+  imports: [KafkaModule],
 })
 export class MessagingModule {}
