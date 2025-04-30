@@ -10,7 +10,10 @@ export class KafkaConsumerService
     super({
       client: {
         clientId: 'email-service',
-        brokers: [process.env.KAFKA_BROKER || ''],
+        brokers: [process.env.KAFKA_BROKER || 'localhost:9092'],
+      },
+      consumer: {
+        groupId: 'email-consumer-group',
       },
     });
   }
