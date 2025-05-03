@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { SendEmailUseCase } from 'src/app/application/use-cases/send-email.use-case';
+import { SendEmailUseCase } from 'src/app/application/email/use-cases/send-email.use-case';
 import { EmailController } from './controllers/email.controller';
 
 @Module({

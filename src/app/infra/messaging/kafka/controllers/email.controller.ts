@@ -1,6 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { EventPattern, Payload } from '@nestjs/microservices';
-import { SendEmailUseCase } from 'src/app/application/use-cases/send-email.use-case';
+import { SendEmailUseCase } from 'src/app/application/email/use-cases/send-email.use-case';
 import { UserCreatedEvent } from '../event/user-created.event';
 
 @Controller('email')
