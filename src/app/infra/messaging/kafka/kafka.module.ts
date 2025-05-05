@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { SendEmailUseCase } from 'src/app/application/email/use-cases/send-email.use-case';
-import { EmailController } from './controllers/email.controller';
+import { KafkaProducerRepository } from './kafka-producer.repository';
 
 @Module({
   imports: [
@@ -14,14 +13,11 @@ import { EmailController } from './controllers/email.controller';
             clientId: 'CLIENT_EMAIL_SERVICE',
             brokers: [process.env.KAFKA_BROKER || 'localhost:9092'],
           },
-          consumer: {
-            groupId: 'CONSUMER_EMAIL_SERVICE',
-          },
         },
       },
     ]),
   ],
-  providers: [SendEmailUseCase],
-  controllers: [EmailController],
+  providers: [KafkaProducerRepository],
+  exports: [KafkaProducerRepository],
 })
 export class KafkaModule {}

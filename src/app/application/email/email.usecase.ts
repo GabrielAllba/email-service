@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import { SendEmailReq } from '../dtos/req/send-email.dto';
-import { SendEmailRes } from '../dtos/res/send-email.dto';
+import { SendEmailReq } from './dtos/req/send-email.dto';
+import { SendEmailRes } from './dtos/res/send-email.dto';
 
 @Injectable()
-export class SendEmailUseCase {
+export class EmailUseCase {
   private transporter: nodemailer.Transporter;
 
   constructor() {
@@ -17,7 +17,7 @@ export class SendEmailUseCase {
     });
   }
 
-  async execute(dto: SendEmailReq): Promise<SendEmailRes> {
+  async sendEmail(dto: SendEmailReq): Promise<SendEmailRes> {
     const { to, subject, html } = dto;
 
     await this.transporter.sendMail({

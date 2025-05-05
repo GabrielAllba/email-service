@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { MessagingModule } from './app/infra/messaging/messaging.module';
+import { EmailModule } from './app/application/email/email.module';
 import { HealthModule } from './app/application/health/health.module';
+import { MessagingModule } from './app/infra/messaging/messaging.module';
 
 @Module({
-  imports: [MessagingModule, HealthModule],
+  imports: [MessagingModule, EmailModule, HealthModule],
 })
 export class AppModule {}

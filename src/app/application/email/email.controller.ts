@@ -1,11 +1,11 @@
 import { Controller } from '@nestjs/common';
 import { EventPattern, Payload } from '@nestjs/microservices';
-import { SendEmailUseCase } from 'src/app/application/email/use-cases/send-email.use-case';
-import { UserCreatedEvent } from '../event/user-created.event';
+import { UserCreatedEvent } from 'src/app/infra/messaging/kafka/event/user-created.event';
+import { EmailUseCase } from './email.usecase';
 
 @Controller('email')
 export class EmailController {
-  constructor(private readonly sendEmailUseCase: SendEmailUseCase) {}
+  constructor(private readonly emailUseCase: EmailUseCase) {}
 
   @EventPattern('user.created')
   async handleNotificationEvent(@Payload() payload: UserCreatedEvent) {
@@ -40,7 +40,7 @@ export class EmailController {
   </div>
 `;
 
-    await this.sendEmailUseCase.execute({
+    await this.emailUseCase.sendEmail({
       to: email,
       subject: 'Verify your Email',
       html: html,
