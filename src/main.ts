@@ -15,7 +15,7 @@ async function bootstrap() {
       options: {
         url: `0.0.0.0:${process.env.EMAIL_SERVICE_GRPC_PORT || 50052}`,
         package: 'emailservice',
-        protoPath: '../contract/email-service.proto',
+        protoPath: './contract/email-service.proto',
       },
     },
   );
